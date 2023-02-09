@@ -1,12 +1,9 @@
 import express from "express";
-import { ExampleController } from "./ExampleController";
+import { RegisterRoutes } from "./generatedRoutes/routes";
 
 const app = express();
-const exampleController = new ExampleController();
 
-app.get("/examples", (req, res) => {
-  res.send(exampleController.getExamples());
-});
+RegisterRoutes(app);
 
 app.listen(3000, () => {
   console.log("express is listening ");
