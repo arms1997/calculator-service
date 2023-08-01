@@ -1,0 +1,50 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "refresh",
+		"version": "1.0.0",
+		"description": "Refresh App Backend ",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/examples": {
+			"get": {
+				"operationId": "GetExamples",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"type": "string"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
