@@ -3,12 +3,14 @@ import { ExampleService } from "./ExampleService";
 
 @Route("examples")
 export class ExampleController extends Controller {
-  constructor(private exampleService: ExampleService = new ExampleService()) {
+  constructor(
+    private readonly exampleService: ExampleService = new ExampleService()
+  ) {
     super();
   }
 
   @Get()
-  public getExamples() {
+  public getExamples(): string[] {
     return this.exampleService.getExamples();
   }
 }

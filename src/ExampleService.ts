@@ -1,7 +1,5 @@
 export class ExampleService {
-  constructor() {}
-
-  public getExamples() {
+  public getExamples(): string[] {
     return ["shrey", "zain", "vish", "armeen"];
   }
 }
