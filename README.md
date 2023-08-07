@@ -6,7 +6,7 @@
 
 To get calculator-service up and running follow the steps outlined below
 
-1. Make sure you have the LTS of [Node](https://nodejs.org/en) installed.
+1. Make sure you have version `16.19.0` of [Node](https://nodejs.org/en) installed, alternatively you can use [Node Version Manager](https://github.com/nvm-sh/nvm).
 2. Make sure you have [Docker](https://www.docker.com/) installed
 3. Clone this repository `git clone git@github.com:arms1997/calculator-service.git`
 4. Install all the required dependencies `cd calculator-service && npm install`
