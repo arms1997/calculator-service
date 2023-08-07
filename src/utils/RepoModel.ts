@@ -1,8 +1,7 @@
 import { Knex } from "knex";
-import { db as dbConnection } from "..";
 
 export abstract class RepoModel {
-  constructor(protected db: Knex = dbConnection) {
+  constructor(protected db: Knex) {
     this.db = db;
   }
 

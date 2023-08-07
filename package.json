@@ -10,7 +10,7 @@
     "lint-fix": "npm run lint -- --fix",
     "style-check": "prettier 'src/**/*.ts' --list-different",
     "style-fix": "prettier 'src/**/*.ts' --write",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "prepare": "husky install",
     "pre-commit": "npm run lint && npm run test",
     "tsoa:gen": "tsoa spec-and-routes"
