@@ -1,7 +1,12 @@
+import { db } from "../db";
 import { RepoModel } from "../utils/RepoModel";
 import { UserData, User } from "./User";
 
 export class UserRepo extends RepoModel {
+  constructor() {
+    super(db);
+  }
+
   protected get tableName(): string {
     return "user";
   }

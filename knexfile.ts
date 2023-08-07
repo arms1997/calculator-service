@@ -11,6 +11,10 @@ const config: Record<string, Knex.Config> = {
       password: DATABASE_PASSWORD,
       database: "calculator",
     },
+    pool: {
+      min: 2,
+      max: 10,
+    },
   },
 };
 
