@@ -7,6 +7,8 @@
     "specVersion": 3
   },
   "routes": {
-    "routesDir": "./src/generatedRoutes"
+    "middleware": "express",
+    "routesDir": "./src/generatedRoutes",
+    "authenticationModule": "./src/middleware/Authentication.ts"
   }
 }

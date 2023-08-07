@@ -5,13 +5,107 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"SessionResponse": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"calculation": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"calculation",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Session": {
+				"properties": {
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"calculation": {
+						"type": "string"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"userId",
+					"calculation",
+					"id",
+					"created_at",
+					"updated_at"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AuthResponse": {
+				"properties": {
+					"token": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"token",
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UserData": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"role": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "refresh",
+		"title": "calculator-service",
 		"version": "1.0.0",
-		"description": "Refresh App Backend ",
+		"description": "Calculator App Backend",
 		"license": {
 			"name": "ISC"
 		},
@@ -19,9 +113,9 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/examples": {
+		"/session": {
 			"get": {
-				"operationId": "GetExamples",
+				"operationId": "GetSessions",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -29,7 +123,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"type": "string"
+										"$ref": "#/components/schemas/SessionResponse"
 									},
 									"type": "array"
 								}
@@ -37,8 +131,121 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"JWT": []
+					}
+				],
 				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateSession",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Session"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"JWT": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"calculation": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"calculation"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/login": {
+			"post": {
+				"operationId": "Login",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AuthResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"password": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"password",
+									"email"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/register": {
+			"post": {
+				"operationId": "Register",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AuthResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserData"
+							}
+						}
+					}
+				}
 			}
 		}
 	},
