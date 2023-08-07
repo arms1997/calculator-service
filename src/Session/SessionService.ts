@@ -1,5 +1,4 @@
 import { UserService } from "../User/UserService";
-import { Session } from "./Session";
 import { SessionRepo } from "./SessionRepo";
 import { SessionResponse } from "./SessionResponse";
 
@@ -27,13 +26,13 @@ export class SessionService {
   public async createNewSession(
     email: string,
     calculation: string
-  ): Promise<Session> {
+  ): Promise<void> {
     const ctx = { fn: "SessionService.createNewSession", email, calculation };
     console.info(ctx);
 
     const { id } = await this.userService.getUserByEmail(email);
 
-    return await this.sessionRepo.createNewSession({
+    await this.sessionRepo.createNewSession({
       userId: id,
       calculation,
     });

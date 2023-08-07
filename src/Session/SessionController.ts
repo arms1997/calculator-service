@@ -28,12 +28,9 @@ export class SessionController extends Controller {
     sessionData: {
       calculation: string;
     }
-  ): Promise<Session> {
+  ): Promise<void> {
     const { email } = request.user;
 
-    return await this.sessionService.createNewSession(
-      email,
-      sessionData.calculation
-    );
+    await this.sessionService.createNewSession(email, sessionData.calculation);
   }
 }
