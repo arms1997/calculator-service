@@ -6,60 +6,6 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"SessionResponse": {
-				"properties": {
-					"id": {
-						"type": "number",
-						"format": "double"
-					},
-					"calculation": {
-						"type": "string"
-					},
-					"createdAt": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"id",
-					"calculation",
-					"createdAt"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Session": {
-				"properties": {
-					"userId": {
-						"type": "number",
-						"format": "double"
-					},
-					"calculation": {
-						"type": "string"
-					},
-					"id": {
-						"type": "number",
-						"format": "double"
-					},
-					"created_at": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updated_at": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"userId",
-					"calculation",
-					"id",
-					"created_at",
-					"updated_at"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"AuthResponse": {
 				"properties": {
 					"token": {
@@ -98,6 +44,28 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"SessionResponse": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"calculation": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"calculation",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -113,71 +81,6 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/session": {
-			"get": {
-				"operationId": "GetSessions",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/SessionResponse"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"JWT": []
-					}
-				],
-				"parameters": []
-			},
-			"post": {
-				"operationId": "CreateSession",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Session"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"JWT": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"calculation": {
-										"type": "string"
-									}
-								},
-								"required": [
-									"calculation"
-								],
-								"type": "object"
-							}
-						}
-					}
-				}
-			}
-		},
 		"/auth/login": {
 			"post": {
 				"operationId": "Login",
@@ -242,6 +145,64 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/UserData"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/session": {
+			"get": {
+				"operationId": "GetSessions",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SessionResponse"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"JWT": []
+					}
+				],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateSession",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [
+					{
+						"JWT": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"calculation": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"calculation"
+								],
+								"type": "object"
 							}
 						}
 					}
